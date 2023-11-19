@@ -2,3 +2,53 @@ Car Make: <input type="text" [formControl]="makeControl" />
 <pre>{{ makeControl.value }}</pre>
 <br />
 Color: <input type="text" [formControl]="colorControl" />
+<input
+  type="range"
+  id="price"
+  min="0"
+  max="999999"
+  value="999999"
+  step="1000"
+  list="priceValues"
+  [formControl]="priceControl"
+/>
+<label for="price">Maximum Price</label>
+<datalist id="priceValues">
+  <option value="0" label="$0"></option>
+  <option value="999000" label="$999000"></option>
+</datalist>
+<pre>{{ priceControl.value }}</pre>
+
+<input
+  type="range"
+  id="km"
+  min="0"
+  max="999999"
+  value="999999"
+  step="1000"
+  list="kmValues"
+  [formControl]="kmControl"
+/>
+<label for="km">Maximum Km</label>
+<datalist id="kmValues">
+  <option value="0" label="0km"></option>
+  <option value="999000" label="999000km"></option>
+</datalist>
+<pre>{{ kmControl.value }}</pre>
+
+<input
+  type="range"
+  id="km"
+  min="1900"
+  max="2024"
+  value="2024"
+  step="1"
+  list="yearValues"
+  [formControl]="yearControl"
+/>
+<label for="year">Maximum Year</label>
+<datalist id="yearValues">
+  <option value="1900" label="1900"></option>
+  <option value="2024" label="2024"></option>
+</datalist>
+<pre>{{ yearControl.value }}</pre>

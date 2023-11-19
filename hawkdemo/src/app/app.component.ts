@@ -14,7 +14,6 @@ import { FilterComponent } from './filter/filter.component';
 export class AppComponent implements OnInit {
   title = 'hawkdemo';
 
-  //firestore: Firestore = inject(Firestore);
   cars: any = [];
   carsString: string = '';
 
@@ -23,15 +22,8 @@ export class AppComponent implements OnInit {
     private localservice: LocalstorageService
   ) {}
 
-  // refreshUsers() {
-  //   this.service.getUsers().subscribe((result) => {
-  //     console.log(result);
-  //     this.users = result;
-  //   });
-  // }
-
   ngOnInit(): void {
-    this.fireservice.getCars().subscribe((result) => {
+    this.fireservice.getCars(this.localservice).subscribe((result) => {
       console.log(result);
       this.cars = result;
       this.carsString = JSON.stringify(this.cars);

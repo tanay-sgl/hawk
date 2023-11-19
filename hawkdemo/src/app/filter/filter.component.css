@@ -1,0 +1,7 @@
+datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: sideways-lr;
+  width: 200px;
+}
