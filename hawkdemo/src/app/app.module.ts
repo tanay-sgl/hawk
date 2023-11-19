@@ -8,11 +8,13 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FirestoreService } from './firestore.service';
 import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './filter/filter.component';
+import { LocalstorageService } from './localstorage.service';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FilterComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FilterComponent,
     provideFirebaseApp(() =>
       initializeApp({
         apiKey: 'AIzaSyCUK5njym6GVoGD4cm0cJ0JIv3oVY5fKQ4',
@@ -26,7 +28,7 @@ import { FilterComponent } from './filter/filter.component';
     ),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [FirestoreService],
+  providers: [FirestoreService, LocalstorageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
