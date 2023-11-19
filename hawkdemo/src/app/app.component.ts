@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ConnectService } from './connect.service';
+import { FirestoreService } from './firestore.service';
 import { inject } from '@angular/core';
 import { Firestore, collectionData, collection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-
+import { HeaderComponent } from './header/header.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,11 +14,13 @@ export class AppComponent {
 
   firestore: Firestore = inject(Firestore);
   users: any = [];
+  userString: string = '';
 
-  constructor(private service: ConnectService) {
-    this.service.getUsers().subscribe((result) => {
+  constructor(private service: FirestoreService) {
+    this.service.getCars().subscribe((result) => {
       console.log(result);
       this.users = result;
+      this.userString = JSON.stringify(this.users);
     });
   }
 

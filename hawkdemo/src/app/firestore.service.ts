@@ -4,11 +4,11 @@ import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root',
 })
-export class ConnectService {
+export class FirestoreService {
   constructor(private firestore: Firestore) {}
 
-  getUsers() {
-    let collectionInstance = collection(this.firestore, 'users');
+  getCars() {
+    let collectionInstance = collection(this.firestore, 'cars');
     return collectionData(collectionInstance);
   }
 }

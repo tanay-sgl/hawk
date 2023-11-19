@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { ConnectService } from './connect.service';
+import { FirestoreService } from './firestore.service';
+import { HeaderComponent } from './header/header.component';
+import { FilterComponent } from './filter/filter.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent, FilterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +26,7 @@ import { ConnectService } from './connect.service';
     ),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [ConnectService],
+  providers: [FirestoreService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
