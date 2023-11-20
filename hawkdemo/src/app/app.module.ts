@@ -9,6 +9,7 @@ import { FirestoreService } from './firestore.service';
 import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './filter/filter.component';
 import { LocalstorageService } from './localstorage.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -27,6 +28,7 @@ import { LocalstorageService } from './localstorage.service';
       })
     ),
     provideFirestore(() => getFirestore()),
+    NoopAnimationsModule,
   ],
   providers: [FirestoreService, LocalstorageService],
   bootstrap: [AppComponent],

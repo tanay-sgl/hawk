@@ -7,6 +7,14 @@ export interface Car {
   year: number;
 }
 
+export interface Filter {
+  // make: string;
+  // color: string;
+  model: string;
+  minPrice: number;
+  maxPrice: number;
+}
+
 export interface FireStoreQuery {
   property: string;
   operator: string;

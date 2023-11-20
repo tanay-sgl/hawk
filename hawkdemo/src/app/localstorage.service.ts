@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Car } from './interfaces';
+import { Car, Filter } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LocalstorageService implements Car {
+export class LocalstorageService implements Filter {
   private _model: string;
   private _price: number;
   private _km: number;
   private _year: number;
   private _make: string;
   private _color: string;
+  private _minPrice: number;
+  private _maxPrice: number;
 
   constructor() {
     this._make = localStorage.getItem('make') as string;
@@ -20,9 +22,13 @@ export class LocalstorageService implements Car {
     const priceTemp = localStorage.getItem('price') as string;
     const kmTemp = localStorage.getItem('km') as string;
     const yearTemp = localStorage.getItem('year') as string;
+    const minPriceTemp = localStorage.getItem('priceMin') as string;
+    const maxPriceTemp = localStorage.getItem('priceMax') as string;
     this._price = priceTemp == 'null' ? 999999 : (+priceTemp as number);
     this._km = kmTemp == 'null' ? 999999 : (+kmTemp as number);
     this._year = yearTemp == 'null' ? 2023 : (+yearTemp as number);
+    this._minPrice = minPriceTemp == 'null' ? 999999 : (+priceTemp as number);
+    this._maxPrice = maxPriceTemp == 'null' ? 999999 : (+priceTemp as number);
   }
 
   public get make() {
@@ -46,6 +52,14 @@ export class LocalstorageService implements Car {
 
   public get year() {
     return this._year;
+  }
+
+  public get minPrice() {
+    return this._minPrice;
+  }
+
+  public get maxPrice() {
+    return this._maxPrice;
   }
 
   public set make(carMake: string) {
@@ -76,5 +90,13 @@ export class LocalstorageService implements Car {
   public set km(carKm: number) {
     this._km = carKm;
     localStorage.setItem('km', carKm as unknown as string);
+  }
+  public set minPrice(carPrice: number) {
+    this._minPrice = carPrice;
+    localStorage.setItem('minPrice', carPrice as unknown as string);
+  }
+  public set maxPrice(carPrice: number) {
+    this._maxPrice = carPrice;
+    localStorage.setItem('maxPrice', carPrice as unknown as string);
   }
 }

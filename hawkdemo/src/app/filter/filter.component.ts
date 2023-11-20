@@ -1,12 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalstorageService } from '../localstorage.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css'],
-  imports: [ReactiveFormsModule],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatMenuModule,
+  ],
   standalone: true,
 })
 export class FilterComponent implements OnInit {
@@ -16,6 +25,8 @@ export class FilterComponent implements OnInit {
   @Input() priceControl!: FormControl;
   @Input() kmControl!: FormControl;
   @Input() yearControl!: FormControl;
+  @Input() minPriceControl!: FormControl;
+  @Input() maxPriceControl!: FormControl;
   @Input()
   childRefresh!: () => void;
   localStorageService: LocalstorageService;
@@ -27,6 +38,8 @@ export class FilterComponent implements OnInit {
     this.priceControl = new FormControl(localStorage.price);
     this.kmControl = new FormControl(localStorage.km);
     this.yearControl = new FormControl(localStorage.year);
+    this.minPriceControl = new FormControl(localStorage.minPrice);
+    this.maxPriceControl = new FormControl(localStorage.maxPrice);
   }
 
   ngOnInit(): void {
@@ -61,6 +74,14 @@ export class FilterComponent implements OnInit {
 
     this.yearControl.valueChanges.subscribe(
       (change) => (this.localStorageService.year = change)
+    );
+
+    this.minPriceControl.valueChanges.subscribe(
+      (change) => (this.localStorageService.minPrice = change)
+    );
+
+    this.maxPriceControl.valueChanges.subscribe(
+      (change) => (this.localStorageService.maxPrice = change)
     );
   }
 }

@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
 
   cars: any = [];
   carsString: string = '';
+  make: any;
   fireservice: FirestoreService;
   localservice: LocalstorageService;
   constructor(
@@ -27,6 +28,10 @@ export class AppComponent implements OnInit {
       console.log(result);
       this.cars = result;
       this.carsString = JSON.stringify(this.cars);
+    });
+    this.fireservice.getMake().subscribe((result) => {
+      console.log(result);
+      this.make = result;
     });
     console.log(this.fireservice);
   }
