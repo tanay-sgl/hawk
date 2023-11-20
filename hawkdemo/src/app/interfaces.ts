@@ -6,3 +6,9 @@ export interface Car {
   km: number;
   year: number;
 }
+
+export interface FireStoreQuery {
+  property: string;
+  operator: string;
+  value: string;
+}
