@@ -19,14 +19,19 @@ export interface Filter {
   standalone: true,
 })
 export class FilterComponent {
-  @Input() makeControl: FormControl;
-  @Input() colorControl: FormControl;
-  @Input() modelControl: FormControl;
-  @Input() priceControl: FormControl;
-  @Input() kmControl: FormControl;
-  @Input() yearControl: FormControl;
+  @Input() makeControl!: FormControl;
+  @Input() colorControl!: FormControl;
+  @Input() modelControl!: FormControl;
+  @Input() priceControl!: FormControl;
+  @Input() kmControl!: FormControl;
+  @Input() yearControl!: FormControl;
 
+  localStorageService: LocalstorageService;
+  carsString: string = '';
   constructor(localStorage: LocalstorageService) {
+    this.localStorageService = localStorage;
+    console.log(this.localStorageService);
+    this.carsString = JSON.stringify(this.localStorageService.color);
     this.makeControl = new FormControl(localStorage.make);
     this.colorControl = new FormControl(localStorage.color);
     this.modelControl = new FormControl(localStorage.model);

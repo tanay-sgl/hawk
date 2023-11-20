@@ -28,6 +28,7 @@ Color: <input type="text" [formControl]="colorControl" />
   step="1000"
   list="kmValues"
   [formControl]="kmControl"
+  onchange=""
 />
 <label for="km">Maximum Km</label>
 <datalist id="kmValues">
@@ -52,3 +53,5 @@ Color: <input type="text" [formControl]="colorControl" />
   <option value="2024" label="2024"></option>
 </datalist>
 <pre>{{ yearControl.value }}</pre>
+
+<h2>{{ localStorageService.price }}</h2>

@@ -16,11 +16,15 @@ export class AppComponent implements OnInit {
 
   cars: any = [];
   carsString: string = '';
-
+  fireservice: FirestoreService;
+  localservice: LocalstorageService;
   constructor(
-    private fireservice: FirestoreService,
-    private localservice: LocalstorageService
-  ) {}
+    fireservice: FirestoreService,
+    localservice: LocalstorageService
+  ) {
+    this.fireservice = fireservice;
+    this.localservice = localservice;
+  }
 
   ngOnInit(): void {
     this.fireservice.getCars(this.localservice).subscribe((result) => {

@@ -52,5 +52,30 @@ export class LocalstorageService implements Filter {
     this._make = carMake;
     localStorage.setItem('make', carMake);
   }
+
+  public set color(carColor: string) {
+    this._color = carColor;
+    localStorage.setItem('color', carColor);
+  }
+
+  public set model(carModel: string) {
+    this._model = carModel;
+    localStorage.setItem('model', carModel);
+  }
+
+  public set price(carPrice: number) {
+    this._price = carPrice;
+    localStorage.setItem('price', carPrice as unknown as string);
+  }
+
+  public set year(carYear: number) {
+    this._year = carYear;
+    localStorage.setItem('year', carYear as unknown as string);
+  }
+
+  public set km(carKm: number) {
+    this._km = carKm;
+    localStorage.setItem('km', carKm as unknown as string);
+  }
 }
 export { Filter };
