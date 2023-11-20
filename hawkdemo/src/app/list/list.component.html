@@ -1,0 +1,9 @@
+<mat-list>
+  @for (message of messages; track message) {
+  <mat-list-item>
+    <h3 matListItemTitle>{{ message.from }}</h3>
+    <p matListItemLine>{{ message.subject }}</p>
+    <p matListItemLine class="demo-2">{{ message.content }}</p>
+  </mat-list-item>
+  }
+</mat-list>

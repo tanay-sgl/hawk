@@ -1,74 +1,6 @@
-Car Make: <input type="text" [formControl]="makeControl" />
-<pre>{{ makeControl.value }}</pre>
-<br />
-Color: <input type="text" [formControl]="colorControl" />
-<input
-  type="range"
-  id="price"
-  min="0"
-  max="999999"
-  value="999999"
-  step="1000"
-  list="priceValues"
-  [formControl]="priceControl"
-/>
-<label for="price">Maximum Price</label>
-<datalist id="priceValues">
-  <option value="0" label="$0"></option>
-  <option value="999000" label="$999000"></option>
-</datalist>
-<pre>{{ priceControl.value }}</pre>
-
-<input
-  type="range"
-  id="km"
-  min="0"
-  max="999999"
-  value="999999"
-  step="1000"
-  list="kmValues"
-  [formControl]="kmControl"
-  onchange=""
-/>
-<label for="km">Maximum Km</label>
-<datalist id="kmValues">
-  <option value="0" label="0km"></option>
-  <option value="999000" label="999000km"></option>
-</datalist>
-<pre>{{ kmControl.value }}</pre>
-
-<input
-  type="range"
-  id="km"
-  min="1900"
-  max="2024"
-  value="2024"
-  step="1"
-  list="yearValues"
-  [formControl]="yearControl"
-/>
-<label for="year">Maximum Year</label>
-<datalist id="yearValues">
-  <option value="1900" label="1900"></option>
-  <option value="2024" label="2024"></option>
-</datalist>
-<pre>{{ yearControl.value }}</pre>
-
-<h2>{{ localStorageService.price }}</h2>
-
-<br />
-<br />
-<button mat-button [matMenuTriggerFor]="menu">Menu</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item [formControl]="makeControl">Item 1</button>
-  <button mat-menu-item [formControl]="makeControl">Item 2</button>
-</mat-menu>
-<br />
-<br />
-<br />
 <form class="form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Make</mat-label>
+  <mat-form-field class="full-width">
+    <mat-label>Search Make</mat-label>
     <input
       matInput
       placeholder="Honda"
@@ -76,4 +8,34 @@ Color: <input type="text" [formControl]="colorControl" />
       [formControl]="makeControl"
     />
   </mat-form-field>
+  <br />
+  <mat-form-field class="full-width">
+    <mat-label>Search Model</mat-label>
+    <input
+      matInput
+      placeholder="Civic"
+      value="Civic"
+      [formControl]="modelControl"
+    />
+  </mat-form-field>
+  <br />
+  <mat-slider min="0" max="99999">
+    <input
+      value="0"
+      type="range"
+      id="priceMin"
+      list="priceValues"
+      [formControl]="minPriceControl"
+      matSliderStartThumb
+    />
+    <input
+      value="9999999"
+      matSliderEndThumb
+      type="range"
+      id="priceMax"
+      list="priceValues"
+      [formControl]="maxPriceControl"
+    />
+  </mat-slider>
 </form>
+<button (click)="refresh()">Search!</button>

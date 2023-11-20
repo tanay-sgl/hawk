@@ -22,13 +22,17 @@ export class LocalstorageService implements Filter {
     const priceTemp = localStorage.getItem('price') as string;
     const kmTemp = localStorage.getItem('km') as string;
     const yearTemp = localStorage.getItem('year') as string;
-    const minPriceTemp = localStorage.getItem('priceMin') as string;
-    const maxPriceTemp = localStorage.getItem('priceMax') as string;
+    const minPriceTemp = localStorage.getItem('minPrice') as string;
+    const maxPriceTemp = localStorage.getItem('maxPrice') as string;
+    console.log(minPriceTemp);
+    console.log(maxPriceTemp);
     this._price = priceTemp == 'null' ? 999999 : (+priceTemp as number);
     this._km = kmTemp == 'null' ? 999999 : (+kmTemp as number);
     this._year = yearTemp == 'null' ? 2023 : (+yearTemp as number);
-    this._minPrice = minPriceTemp == 'null' ? 999999 : (+priceTemp as number);
-    this._maxPrice = maxPriceTemp == 'null' ? 999999 : (+priceTemp as number);
+    this._minPrice = minPriceTemp == '0' ? 0 : (+minPriceTemp as number);
+    this._maxPrice = maxPriceTemp == '0' ? 99999999 : (+maxPriceTemp as number);
+    console.log(this._minPrice);
+    console.log(this._maxPrice);
   }
 
   public get make() {

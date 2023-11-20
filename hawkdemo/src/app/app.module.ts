@@ -10,12 +10,14 @@ import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './filter/filter.component';
 import { LocalstorageService } from './localstorage.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ListComponent } from './list/list.component';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FilterComponent,
+    ListComponent,
     provideFirebaseApp(() =>
       initializeApp({
         apiKey: 'AIzaSyCUK5njym6GVoGD4cm0cJ0JIv3oVY5fKQ4',

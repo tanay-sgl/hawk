@@ -19,28 +19,42 @@ export class FirestoreService {
     condition: string,
     value: string | number
   ): QueryConstraint {
-    console.log(condition);
-    if (
-      //condition == '_make' ||
-      condition == '_model'
-      //condition == '_color'
-    ) {
-      return where(condition, '==', value as string);
+    console.log(value);
+    if (condition == '_make') {
+      return where('Make', '==', value);
+    }
+    if (condition == '_model') {
+      return where('Model', '==', value);
+    }
+    if (condition == '_color') {
+      return where('Color', '==', value);
     }
 
     if (condition == '_minPrice') {
-      return where('price', '>', value as string);
+      return where('Price', '>', value);
     }
-    return where('price', '<', value as string);
+    return where('Price', '<', value);
   }
 
   private generateQueryConditions(filter: Filter): QueryConstraint[] {
     let queryConditions: QueryConstraint[] = [];
 
     for (const key in filter) {
-      queryConditions.push(
-        this.generateQueryConstraint(key, filter[key as keyof Filter])
-      );
+      if (
+        key == '_make' ||
+        key == '_model' ||
+        key == '_color' ||
+        key == '_minPrice' ||
+        key == '_maxPrice'
+      ) {
+        console.log(key);
+        console.log(filter[key as keyof Filter]);
+        const value = filter[key as keyof Filter];
+
+        if (value != null && value != '') {
+          queryConditions.push(this.generateQueryConstraint(key, value));
+        }
+      }
     }
 
     return queryConditions;
@@ -54,6 +68,7 @@ export class FirestoreService {
   }
 
   getCars(filter: Filter) {
+    console.log(filter);
     const queryConditions = this.generateQueryConditions(filter);
     const complexQuery = query(
       collection(this.firestore, 'cars'),
