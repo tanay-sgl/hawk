@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './firestore.service';
 import { LocalstorageService } from './localstorage.service';
-import { inject } from '@angular/core';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { HeaderComponent } from './header/header.component';
-import { FilterComponent } from './filter/filter.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -32,5 +28,12 @@ export class AppComponent implements OnInit {
       this.cars = result;
       this.carsString = JSON.stringify(this.cars);
     });
+    console.log(this.fireservice);
+  }
+
+  refresh(): void {
+    window.location.reload();
+    this.localservice = new LocalstorageService();
+    console.log(this.localservice);
   }
 }

@@ -16,7 +16,8 @@ export class FilterComponent implements OnInit {
   @Input() priceControl!: FormControl;
   @Input() kmControl!: FormControl;
   @Input() yearControl!: FormControl;
-
+  @Input()
+  childRefresh!: () => void;
   localStorageService: LocalstorageService;
   constructor(localStorage: LocalstorageService) {
     this.localStorageService = localStorage;
@@ -30,6 +31,11 @@ export class FilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.onChanges();
+  }
+
+  refresh() {
+    console.log('refresh?');
+    window.location.reload();
   }
 
   onChanges(): void {

@@ -16,6 +16,8 @@ export class FirestoreService {
 
   getCars(filter: Car) {
     let collectionInstance = collection(this.firestore, 'cars');
-    return collectionData(query(collectionInstance));
+    return collectionData(
+      query(collectionInstance, where('Make', '==', filter.make))
+    );
   }
 }
