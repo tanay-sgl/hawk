@@ -6,7 +6,7 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
-import { Filter } from './localstorage.service';
+import { Car } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +14,7 @@ import { Filter } from './localstorage.service';
 export class FirestoreService {
   constructor(private firestore: Firestore) {}
 
-  getCars(filter: Filter) {
-    console.log(filter);
+  getCars(filter: Car) {
     let collectionInstance = collection(this.firestore, 'cars');
     return collectionData(query(collectionInstance));
   }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Filter } from './filter/filter.component';
+import { Car } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LocalstorageService implements Filter {
+export class LocalstorageService implements Car {
   private _model: string;
   private _price: number;
   private _km: number;
@@ -78,4 +78,3 @@ export class LocalstorageService implements Filter {
     localStorage.setItem('km', carKm as unknown as string);
   }
 }
-export { Filter };

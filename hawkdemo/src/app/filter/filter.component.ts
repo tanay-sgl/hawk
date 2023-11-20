@@ -1,15 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LocalstorageService } from '../localstorage.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-
-export interface Filter {
-  make: string;
-  color: string;
-  model: string;
-  price: number;
-  km: number;
-  year: number;
-}
 
 @Component({
   selector: 'app-filter',
@@ -18,7 +9,7 @@ export interface Filter {
   imports: [ReactiveFormsModule],
   standalone: true,
 })
-export class FilterComponent {
+export class FilterComponent implements OnInit {
   @Input() makeControl!: FormControl;
   @Input() colorControl!: FormControl;
   @Input() modelControl!: FormControl;
@@ -27,16 +18,43 @@ export class FilterComponent {
   @Input() yearControl!: FormControl;
 
   localStorageService: LocalstorageService;
-  carsString: string = '';
   constructor(localStorage: LocalstorageService) {
     this.localStorageService = localStorage;
-    console.log(this.localStorageService);
-    this.carsString = JSON.stringify(this.localStorageService.color);
     this.makeControl = new FormControl(localStorage.make);
     this.colorControl = new FormControl(localStorage.color);
     this.modelControl = new FormControl(localStorage.model);
     this.priceControl = new FormControl(localStorage.price);
     this.kmControl = new FormControl(localStorage.km);
     this.yearControl = new FormControl(localStorage.year);
+  }
+
+  ngOnInit(): void {
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.makeControl.valueChanges.subscribe((change) => {
+      this.localStorageService.make = change;
+    });
+
+    this.colorControl.valueChanges.subscribe(
+      (change) => (this.localStorageService.color = change)
+    );
+
+    this.modelControl.valueChanges.subscribe(
+      (change) => (this.localStorageService.model = change)
+    );
+
+    this.priceControl.valueChanges.subscribe(
+      (change) => (this.localStorageService.price = change)
+    );
+
+    this.kmControl.valueChanges.subscribe(
+      (change) => (this.localStorageService.km = change)
+    );
+
+    this.yearControl.valueChanges.subscribe(
+      (change) => (this.localStorageService.year = change)
+    );
   }
 }
