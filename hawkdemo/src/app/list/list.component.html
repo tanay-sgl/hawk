@@ -1,22 +1,18 @@
+<button mat-raised-button (click)="sortYear()">Sort by Year</button>
+<button mat-raised-button (click)="sortKm()">Sort by Odometer</button>
 <mat-list>
   <mat-list-item *ngFor="let car of cars">
     <mat-card class="card">
       <mat-card-header>
-        <mat-card-title>{{ car.Make }}</mat-card-title>
-        <mat-card-subtitle>{{ car.Model }}</mat-card-subtitle>
+        <mat-card-title>{{ car.Make }} {{ car.Model }}</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <p>This card indeterminates progress bar.</p>
-        <p>{{ longText }}</p>
+        <p>Color: {{ car.Color }}</p>
+        <p matListItemLine>Year: {{ car.Year }}</p>
+        <p matListItemLine>$AUD: {{ car.Price }}</p>
+        <p matListItemLine>Odometer: {{ car.Km }}km</p>
       </mat-card-content>
-      <h3 matListItemTitle></h3>
-      <p matListItemLine></p>
-      <p matListItemLine></p>
-      <p matListItemLine>Color: {{ car.Color }}</p>
-      <p matListItemLine>Year: {{ car.Year }}</p>
-      <p matListItemLine>${{ car.Price }}</p>
-      <p matListItemLine>Odometer{{ car.Km }}</p>
-      <p matListItemLine class="MatListItem"></p>
     </mat-card>
   </mat-list-item>
 </mat-list>
