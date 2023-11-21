@@ -7,7 +7,7 @@ import {
   query,
   where,
 } from '@angular/fire/firestore';
-import { Car, Filter } from './interfaces';
+import { Filter } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +19,6 @@ export class FirestoreService {
     condition: string,
     value: string | number
   ): QueryConstraint {
-    console.log(value);
     if (condition == '_make') {
       return where('Make', '==', value);
     }
@@ -47,8 +46,6 @@ export class FirestoreService {
         key == '_minPrice' ||
         key == '_maxPrice'
       ) {
-        console.log(key);
-        console.log(filter[key as keyof Filter]);
         const value = filter[key as keyof Filter];
 
         if (value != null && value != '') {
@@ -60,22 +57,17 @@ export class FirestoreService {
     return queryConditions;
   }
 
-  getMake() {
+  public getMake() {
     return collectionData(collection(this.firestore, 'make'));
-    // return collectionData(
-    //   query(collection(this.firestore, 'make'), where('make', '==', 'Porsche'))
-    // );
   }
 
-  getCars(filter: Filter) {
-    console.log(filter);
+  public getCars(filter: Filter) {
     const queryConditions = this.generateQueryConditions(filter);
     const complexQuery = query(
       collection(this.firestore, 'cars'),
       ...queryConditions
     );
-    console.log(queryConditions);
-    console.log(queryConditions);
+
     return collectionData(complexQuery);
   }
 }

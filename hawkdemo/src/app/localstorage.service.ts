@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Car, Filter } from './interfaces';
+import { Filter } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -24,15 +24,12 @@ export class LocalstorageService implements Filter {
     const yearTemp = localStorage.getItem('year') as string;
     const minPriceTemp = localStorage.getItem('minPrice') as string;
     const maxPriceTemp = localStorage.getItem('maxPrice') as string;
-    console.log(minPriceTemp);
-    console.log(maxPriceTemp);
+
     this._price = priceTemp == 'null' ? 999999 : (+priceTemp as number);
     this._km = kmTemp == 'null' ? 999999 : (+kmTemp as number);
     this._year = yearTemp == 'null' ? 2023 : (+yearTemp as number);
     this._minPrice = minPriceTemp == '0' ? 0 : (+minPriceTemp as number);
     this._maxPrice = maxPriceTemp == '0' ? 99999999 : (+maxPriceTemp as number);
-    console.log(this._minPrice);
-    console.log(this._maxPrice);
   }
 
   public get make() {
@@ -95,10 +92,12 @@ export class LocalstorageService implements Filter {
     this._km = carKm;
     localStorage.setItem('km', carKm as unknown as string);
   }
+
   public set minPrice(carPrice: number) {
     this._minPrice = carPrice;
     localStorage.setItem('minPrice', carPrice as unknown as string);
   }
+
   public set maxPrice(carPrice: number) {
     this._maxPrice = carPrice;
     localStorage.setItem('maxPrice', carPrice as unknown as string);

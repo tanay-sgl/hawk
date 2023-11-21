@@ -17,8 +17,7 @@ export class ListComponent implements OnInit {
   fireservice: FirestoreService;
   localservice: LocalstorageService;
   cars: any[] = [];
-
-  make: any;
+  //make: any;
   constructor(
     fireservice: FirestoreService,
     localservice: LocalstorageService
@@ -41,13 +40,10 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.fireservice.getCars(this.localservice).subscribe((result) => {
-      console.log(result);
       this.cars = result;
     });
-    this.fireservice.getMake().subscribe((result) => {
-      console.log(result);
-      this.make = result;
-    });
-    console.log(this.fireservice);
+    // this.fireservice.getMake().subscribe((result) => {
+    //   this.make = result;
+    // });
   }
 }
