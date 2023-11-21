@@ -12,8 +12,9 @@ import { LocalstorageService } from './localstorage.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ListComponent } from './list/list.component';
 import { CommonModule } from '@angular/common';
+import { MatSidenavModule } from '@angular/material/sidenav';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -21,6 +22,8 @@ import { CommonModule } from '@angular/common';
     FilterComponent,
     ListComponent,
     FormsModule,
+    MatSidenavModule,
+    HeaderComponent,
     provideFirebaseApp(() =>
       initializeApp({
         apiKey: 'AIzaSyCUK5njym6GVoGD4cm0cJ0JIv3oVY5fKQ4',

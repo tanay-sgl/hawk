@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './firestore.service';
 import { LocalstorageService } from './localstorage.service';
-
+import { MatSidenavModule } from '@angular/material/sidenav';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
