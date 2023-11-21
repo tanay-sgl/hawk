@@ -24,16 +24,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fireservice.getCars(this.localservice).subscribe((result) => {
-      console.log(result);
-      this.cars = result;
-      this.carsString = JSON.stringify(this.cars);
-    });
-    this.fireservice.getMake().subscribe((result) => {
-      console.log(result);
-      this.make = result;
-    });
-    console.log(this.fireservice);
+    // this.fireservice.getCars(this.localservice).subscribe((result) => {
+    //   console.log(result);
+    //   this.cars = result;
+    //   this.carsString = JSON.stringify(this.cars);
+    // });
+    // this.fireservice.getMake().subscribe((result) => {
+    //   console.log(result);
+    //   this.make = result;
+    // });
+    // console.log(this.fireservice);
   }
 
   refresh(): void {
