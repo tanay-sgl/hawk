@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "firehawk-demo": {
+      "hosting": {
+        "hawkdemo": [
+          "firehawk-demo"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "firehawk-demo"
+  }
+}
